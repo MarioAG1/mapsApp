@@ -2,8 +2,8 @@ const { writeFileSync, mkdirSync } = require ('fs');
 
 require('dotenv').config()
 
-const targetPath = "./src/environments/enviroment.ts"
-const targetPathDev = "./src/environments/enviroment.development.ts"
+const targetPath = "./src/environments/environment.ts"
+const targetPathDev = "./src/environments/environment.development.ts"
 const mapBoxKey = process.env['MAPBOX_KEY']
 
 if(!mapBoxKey) {
