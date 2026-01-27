@@ -1,13 +1,14 @@
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { LngLatLike } from 'mapbox-gl';
 import { AfterViewInit, Component, ElementRef, signal, viewChild } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Marker } from '../../interface/marker.interface';
 import { v4 as UUIDv4 } from 'uuid';
+import { JsonPipe } from '@angular/common';
 
 mapboxgl.accessToken = environment.mapboxKey;
 @Component({
   selector: 'app-markers-page',
-  imports: [],
+  imports: [JsonPipe],
   templateUrl: './markers-page.component.html',
 })
 export class MarkersPageComponent implements AfterViewInit {
@@ -68,5 +69,17 @@ export class MarkersPageComponent implements AfterViewInit {
     };
 
     this.markers.update((markers) => [newMarker, ...markers]);
+  }
+
+  // Aqui pasa lo mismo que antes, puedes poner el map a travez de argumentos
+  // y te quitas tanta validacion, pero parece ser mejor sin argumento
+
+  flyToMarker(lngLat: LngLatLike) {
+    if (!this.map()) {
+      return;
+    }
+    this.map()?.flyTo({
+      center: lngLat,
+    });
   }
 }
