@@ -6,6 +6,7 @@
       <label
         class="flex justify-between label cursor-pointer mt-2"
         (click)="flyToMarker(marker.mapboxMarker.getLngLat())"
+        (dblclick)="deleteMarker(marker)"
       >
         <span class="label-text text-xs font-medium text-black">{{
           marker.mapboxMarker.getLngLat() | json
